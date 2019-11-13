@@ -1,4 +1,4 @@
 import { AppRegistry } from 'react-native';
-import App from './src/index';
+import App from './app/index';
 
 AppRegistry.registerComponent('pigoss', () => App);

@@ -9,9 +9,11 @@
     "test": "jest"
   },
   "dependencies": {
+    "@react-native-community/viewpager": "^2.0.2",
     "react": "16.3.1",
     "react-native": "0.55.4",
     "react-native-gesture-handler": "1.0.12",
+    "react-native-scrollable-tab-view": "^1.0.0",
     "react-navigation": "3.8.1"
   },
   "devDependencies": {
