@@ -5,15 +5,14 @@
  */
 
 import React, { Component } from 'react';
-// import AppContainer from './navigation/index';
-import { View, Text } from 'react-native';
+import AppContainer from './navigation/index';
+import { View } from 'react-native';
 
 export default class App extends Component<Props> {
     render() {
         return (
             <View style={{flex: 1}}>
-                <Text>app</Text>
-                {/*<AppContainer />*/}
+                <AppContainer />
             </View>
         );
     }

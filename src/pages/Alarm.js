@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {SafeAreaView, Text} from 'react-native';
+import {SafeAreaView, Text, Button} from 'react-native';
 
 export default class Alarm extends Component {
     static navigationOptions = {
@@ -16,9 +16,11 @@ export default class Alarm extends Component {
         | boolean
         | null
         | undefined {
+        const { navigation } = this.props;
         return (
             <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
                 <Text>Alarm</Text>
+                <Button title={'press'} onPress={() => navigation.navigate('Follow')} />
             </SafeAreaView>
         );
     }
