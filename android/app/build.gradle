@@ -137,6 +137,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-vector-icons')
     compile project(':react-native-svg')
     compile project(':@react-native-community/viewpager')
     compile project(':react-native-gesture-handler')
@@ -151,3 +152,5 @@ task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
 }
+
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
