@@ -13,14 +13,13 @@ const tabBars = [
     {label: '关注', page: 'Follow', icon: 'heart'},
     {label: '主页', page: 'Home', icon: 'home'},
     {label: '监控', page: 'Monitor', icon: 'monitor'},
-    {label: '设置', page: 'Setting', icon: 'settings'},
 ];
 
 // 默认导航配置
 const defaultNavigationOptions = {
     headerTintColor: '#fff',
     headerStyle: {
-        backgroundColor: 'black',
+        backgroundColor: '#5e7eef',
         // 因为tab下部出现一条白线，暂且使用这种方式进行隐藏
         borderBottomWidth: -1,
     },
@@ -100,15 +99,15 @@ const AppBottomTabNavigator = createBottomTabNavigator(
             )[0].label,
         }),
         tabBarOptions: {
-            activeTintColor: '#46BAEC',
-            inactiveTintColor: '#E4E4E4',
+            activeTintColor: '#5e7eef',
+            inactiveTintColor: '#707589',
             indicatorStyle: {
                 height: 0,
             },
             style: {
                 // 因为tab上部出现一条白线，暂且使用这种方式进行隐藏
                 borderTopWidth: -1,
-                backgroundColor: '#03151f',
+                backgroundColor: 'white',
                 height: 50,
                 paddingTop: 2,
                 paddingBottom: 3,

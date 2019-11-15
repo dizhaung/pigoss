@@ -17,7 +17,7 @@ import ScrollableTabView, {
 } from 'react-native-scrollable-tab-view';
 
 import fetchRequest from '../api';
-import FeatherIcons from 'react-native-vector-icons/Feather';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 // tab 位置记录
 let tabIndex = -1;
@@ -172,8 +172,10 @@ export default class Monitor extends Component {
   //列表下拉刷新功能
   onRefresh = async () => {
     this.setState({
+      value:'',
       list: [],
       refreshing: true,
+      selectActive: 0,
     });
     this.start = 0;
     await this.getList();
@@ -340,8 +342,8 @@ export default class Monitor extends Component {
                         </View>
                         <View style={styles.heart}>
                           {/*{item.isAttned == 1 ? (*/}
-                          <FeatherIcons
-                            name={'heart'}
+                          <MaterialIcons
+                            name={'favorite'}
                             size={18}
                             color={item.isAttned == 1 ? '#469cd1' : '#aaa'}
                             onPress={() => this.followChange(item, index)}

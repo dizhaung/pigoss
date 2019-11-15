@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import {
-  SafeAreaView,
-  Text,
-  FlatList,
-  RefreshControl,
-  View,
-  StyleSheet,
-  ActivityIndicator,
+    SafeAreaView,
+    Text,
+    FlatList,
+    RefreshControl,
+    View,
+    StyleSheet,
+    ActivityIndicator, TouchableOpacity,
 } from 'react-native';
-import FeatherIcons from 'react-native-vector-icons/Feather';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import fetchRequest from '../../api';
 
 export default class Untreated extends Component {
@@ -142,32 +142,34 @@ export default class Untreated extends Component {
               }
               keyExtractor={item => item.id.toString()}
               renderItem={({item}) => (
-                <View style={styles.item} key={item.id}>
-                  <View style={styles.headIcon}>
-                    <FeatherIcons
-                      name={'alert-circle'}
-                      size={25}
-                      color={this.state.colorMap[item.level]}
-                    />
-                  </View>
-                  <View style={styles.content}>
-                    <Text numberOfLines={1} style={styles.title}>
-                      {item.resName}
-                      <Text style={styles.ip}>{item.ip}</Text>
-                    </Text>
-                    <Text numberOfLines={1} style={styles.desc}>
-                      {item.eventDesc}
-                    </Text>
-                  </View>
-                  <View style={styles.rightIcon}>
-                    <FeatherIcons
-                      name={'chevron-right'}
-                      size={25}
-                      color={'#bbb'}
-                      onPress={() => navigation.navigate('AlarmDetail', item)}
-                    />
-                  </View>
-                </View>
+                  <TouchableOpacity
+                      onPress={() => navigation.navigate('AlarmDetail', item)}>
+                      <View style={styles.item} key={item.id}>
+                        <View style={styles.headIcon}>
+                            <MaterialIcons
+                                name={'error'}
+                                size={25}
+                                color={this.state.colorMap[item.level]}
+                            />
+                        </View>
+                        <View style={styles.content}>
+                            <Text numberOfLines={1} style={styles.title}>
+                                {item.resName}
+                                <Text style={styles.ip}>{item.ip}</Text>
+                            </Text>
+                            <Text numberOfLines={1} style={styles.desc}>
+                                {item.eventDesc}
+                            </Text>
+                        </View>
+                        <View style={styles.rightIcon}>
+                            <MaterialIcons
+                                name={'chevron-right'}
+                                size={25}
+                                color={'#bbb'}
+                            />
+                        </View>
+                      </View>
+                  </TouchableOpacity>
               )}
               onEndReachedThreshold={0.2}
               onEndReached={() => this.loadingMore()}
@@ -194,14 +196,15 @@ const styles = StyleSheet.create({
     borderBottomColor: '#dee',
   },
   headIcon: {
-    width: '15%',
-    paddingLeft: 20,
+    width: '10%',
+    paddingLeft: 10,
   },
   rightIcon: {
     width: '10%',
   },
   content: {
-    width: '75%',
+    width: '80%',
+    paddingLeft: 10,
   },
   title: {
     fontSize: 15,

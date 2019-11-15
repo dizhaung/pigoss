@@ -7,7 +7,7 @@ import {
   StyleSheet,
   ScrollView,
 } from 'react-native';
-import FeatherIcons from 'react-native-vector-icons/Feather';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import fetchRequest from '../api';
 export default class AlarmDetail extends Component {
   static navigationOptions = {
@@ -68,11 +68,11 @@ export default class AlarmDetail extends Component {
               {this.state.indicators.map(item => (
                 <View style={styles.item} key={item.path}>
                   <View style={styles.icon}>
-                    <FeatherIcons
+                    <MaterialIcons
                       name={
                         item.sevirityColor === '#00b300'
                           ? 'check-circle'
-                          : 'alert-circle'
+                          : 'error'
                       }
                       size={25}
                       color={item.sevirityColor}
@@ -91,7 +91,7 @@ export default class AlarmDetail extends Component {
                   </View>
                   <View style={styles.tapIcon}>
                     {item.type === 'IndGroup' ? (
-                      <FeatherIcons
+                      <MaterialIcons
                         name={'chevron-right'}
                         size={25}
                         color={'#bbb'}

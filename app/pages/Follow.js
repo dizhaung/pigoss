@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import fetchRequest from '../api';
 import {NavigationEvents} from 'react-navigation';
-import FeatherIcons from 'react-native-vector-icons/Feather';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 export default class Follow extends Component {
   static navigationOptions = {
@@ -79,6 +79,7 @@ export default class Follow extends Component {
   //列表下拉刷新功能
   onRefresh = async () => {
     this.setState({
+      value:'',
       list: [],
       refreshing: true,
     });
@@ -158,7 +159,7 @@ export default class Follow extends Component {
             {/*) : (*/}
             <FlatList
               data={this.state.list}
-              initialNumToRender={10}
+              initialNumToRender={30}
               refreshControl={
                 <RefreshControl
                   refreshing={this.state.refreshing}
@@ -213,8 +214,8 @@ export default class Follow extends Component {
                     </View>
                     <View style={styles.heart}>
                       {/*{item.isAttned == 1 ? (*/}
-                      <FeatherIcons
-                        name={'heart'}
+                      <MaterialIcons
+                        name={'favorite'}
                         size={15}
                         color={item.isAttned == 1 ? '#469cd1' : '#aaa'}
                         onPress={() => this.followChange(item.isAttned)}
