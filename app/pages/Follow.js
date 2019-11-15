@@ -78,19 +78,24 @@ export default class Follow extends Component {
   };
   followChange = async item => {
     let obj = {isAttned: item.isAttned === '0' ? '1' : '0'};
-    const data = await fetchRequest('monitors/res', 'PUT', {
-      path: item.path,
-      params: JSON.stringify(obj),
-    });
-    if (data) {
-      alert('取消关注成功')
-      this.setState({
-        refreshing:true,
-        list:[],
-      })
-      this.start = 0
-      this.isContinue = true;
-      this.getList()
+    try {
+      const data = await fetchRequest('monitors/res', 'PUT', {
+        path: item.path,
+        params: JSON.stringify(obj),
+      });
+      if (data) {
+        alert('取消关注成功')
+        this.setState({
+          refreshing:true,
+          list:[],
+        })
+        this.start = 0
+        this.isContinue = true;
+        this.getList()
+      }
+    } catch (e) {
+      alert('取消关注失败');
+      console.log(e);
     }
   };
   //列表下拉刷新功能

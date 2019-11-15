@@ -155,19 +155,24 @@ export default class Monitor extends Component {
   //添加和取消关注接口
   followChange = async item => {
     let obj = {isAttned: item.isAttned === '0' ? '1' : '0'};
-    const data = await fetchRequest('monitors/res', 'PUT', {
-      path: item.path,
-      params: JSON.stringify(obj),
-    });
-    if (data) {
-      alert(obj.isAttned==='0'?'取消关注成功':'关注成功')
-      this.setState({
-        list: this.state.list.map(i =>
-          i.path === item.path
-            ? Object.assign(item, {isAttned: obj.isAttned})
-            : i,
-        ),
+    try {
+      const data = await fetchRequest('monitors/res', 'PUT', {
+        path: item.path,
+        params: JSON.stringify(obj),
       });
+      if (data) {
+        alert(obj.isAttned==='0'?'取消关注成功':'关注成功')
+        this.setState({
+          list: this.state.list.map(i =>
+              i.path === item.path
+                  ? Object.assign(item, {isAttned: obj.isAttned})
+                  : i,
+          ),
+        });
+      }
+    } catch (e) {
+      alert('操作失败');
+      console.log(e);
     }
   };
   //列表下拉刷新功能

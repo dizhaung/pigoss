@@ -20,8 +20,8 @@ const fetchRequest = (url, method, params) => {
     })
       .then(response => response.json())
       .then(res => {
-        const {code, data, msg} = res;
-        if (code === '000000') {
+        const {code, data, msg, success} = res;
+        if (code === '000000' && success === true) {
           resolve(data);
         } else if (code === '000401') {
           fetchRequest('sessions/login', 'POST', {
