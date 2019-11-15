@@ -61,6 +61,7 @@ const alarmStack = createStackNavigator(
 const followStack = createStackNavigator(
     {
         Follow,
+        ResDetail,
     },
     {
         defaultNavigationOptions,
