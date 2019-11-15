@@ -76,6 +76,23 @@ export default class Follow extends Component {
       console.log(e);
     }
   };
+  followChange = async item => {
+    let obj = {isAttned: item.isAttned === '0' ? '1' : '0'};
+    const data = await fetchRequest('monitors/res', 'PUT', {
+      path: item.path,
+      params: JSON.stringify(obj),
+    });
+    if (data) {
+      alert('取消关注成功')
+      this.setState({
+        refreshing:true,
+        list:[],
+      })
+      this.start = 0
+      this.isContinue = true;
+      this.getList()
+    }
+  };
   //列表下拉刷新功能
   onRefresh = async () => {
     this.setState({
@@ -218,7 +235,7 @@ export default class Follow extends Component {
                         name={'favorite'}
                         size={15}
                         color={item.isAttned == 1 ? '#469cd1' : '#aaa'}
-                        onPress={() => this.followChange(item.isAttned)}
+                        onPress={() => this.followChange(item)}
                       />
                       {/*) : null}*/}
                     </View>

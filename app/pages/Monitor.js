@@ -160,6 +160,7 @@ export default class Monitor extends Component {
       params: JSON.stringify(obj),
     });
     if (data) {
+      alert(obj.isAttned==='0'?'取消关注成功':'关注成功')
       this.setState({
         list: this.state.list.map(i =>
           i.path === item.path
