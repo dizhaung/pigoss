@@ -57,8 +57,6 @@ export default class AlarmDetail extends Component {
     | undefined {
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
-        {/*<Text>Detail page</Text>*/}
-        {/*<Button title={'next'} onPress={() => navigation.push('Detail')} />*/}
         <View style={styles.container}>
           <Text style={styles.title}>
             {this.props.navigation.state.params.alias}

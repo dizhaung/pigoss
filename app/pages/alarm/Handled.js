@@ -31,6 +31,11 @@ export default class Handled extends Component {
     this.start = 0;
   }
 
+  // 初始化调用接口
+  async componentDidMount(): void {
+    this.getList();
+  }
+
   // 状态清空
   clearState = () => {
     this.setState({
@@ -43,7 +48,6 @@ export default class Handled extends Component {
 
   //获取已处理告警列表
   getList = async keyword => {
-    console.log(this.start);
     this.setState({
       refreshing: this.start === 0,
     });

@@ -33,6 +33,11 @@ export default class Untreated extends Component {
     this.start = 0;
   }
 
+  // 初始化调用接口
+  async componentDidMount(): void {
+    this.getList();
+  }
+
   // 状态清空
   clearState = () => {
     this.setState({
@@ -118,7 +123,7 @@ export default class Untreated extends Component {
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
         <View style={styles.list}>
-          {this.state.list.length === 0 ? (
+          {!this.state.refreshing && this.state.list.length === 0 ? (
             <Text
               style={{
                 color: '#bbb',
