@@ -29,11 +29,7 @@ export default class Handled extends Component {
       list: [],
     };
     this.start = 0;
-  }
-
-  // 初始化调用接口
-  async componentDidMount(): void {
-    this.getList();
+    this.keyword = '';
   }
 
   // 状态清空
@@ -46,16 +42,25 @@ export default class Handled extends Component {
     this.start = 0;
   };
 
+  // 搜索关键词
+  search = async keyword => {
+    this.clearState();
+    this.keyword = keyword;
+    await this.getList();
+  };
+
   //获取已处理告警列表
-  getList = async keyword => {
+  getList = async () => {
     this.setState({
       refreshing: this.start === 0,
     });
-    let params = keyword
-      ? {start: this.start, keyword: keyword, isTreated: true}
-      : {start: this.start, isTreated: true};
     try {
-      const {events, totalCount} = await fetchRequest('events', 'GET', params);
+      const {events, totalCount} = await fetchRequest('events', 'GET', {
+        start: this.start,
+        isTreated: true,
+        keyword: this.keyword,
+      });
+      console.log(events);
       this.setState({
         list: [...this.state.list, ...events],
         total: totalCount,
@@ -68,12 +73,7 @@ export default class Handled extends Component {
 
   //列表下拉刷新功能
   onRefresh = async () => {
-    this.setState({
-      total: null,
-      list: [],
-      refreshing: true,
-    });
-    this.start = 0;
+    this.clearState();
     await this.getList();
   };
 
@@ -105,16 +105,7 @@ export default class Handled extends Component {
       return null;
     }
   };
-  render():
-    | React.ReactElement<any>
-    | string
-    | number
-    | {}
-    | React.ReactNodeArray
-    | React.ReactPortal
-    | boolean
-    | null
-    | undefined {
+  render() {
     const {navigation} = this.props;
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
@@ -145,7 +136,7 @@ export default class Handled extends Component {
               onEndReachedThreshold={0.2}
               onEndReached={() => this.loadingMore()}
               ListFooterComponent={() => this.footer()}
-              keyExtractor={item => item.id.toString()}
+              keyExtractor={(item, index) => item.id + index}
               renderItem={({item}) => (
                   <TouchableOpacity
                       onPress={() => navigation.navigate('AlarmDetail', item)}>

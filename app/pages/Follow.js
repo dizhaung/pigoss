@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {
   SafeAreaView,
+  Alert,
   View,
   Text,
   TextInput,
@@ -84,7 +85,7 @@ export default class Follow extends Component {
         params: JSON.stringify(obj),
       });
       if (data) {
-        alert('取消关注成功')
+        Alert.alert('提示', '取消关注成功')
         this.setState({
           refreshing:true,
           list:[],
@@ -94,7 +95,7 @@ export default class Follow extends Component {
         this.getList()
       }
     } catch (e) {
-      alert('取消关注失败');
+      Alert.alert('提示', '取消关注失败')
       console.log(e);
     }
   };
@@ -136,16 +137,7 @@ export default class Follow extends Component {
       return null;
     }
   };
-  render():
-    | React.ReactElement<any>
-    | string
-    | number
-    | {}
-    | React.ReactNodeArray
-    | React.ReactPortal
-    | boolean
-    | null
-    | undefined {
+  render() {
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: 'whitesmoke'}}>
         <NavigationEvents
@@ -274,6 +266,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     marginLeft: 16,
     marginRight: 16,
+    paddingLeft: 12,
   },
   button: {},
   list: {

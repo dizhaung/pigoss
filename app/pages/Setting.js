@@ -6,16 +6,7 @@ export default class Setting extends Component {
     title: '设置',
   };
 
-  render():
-    | React.ReactElement<any>
-    | string
-    | number
-    | {}
-    | React.ReactNodeArray
-    | React.ReactPortal
-    | boolean
-    | null
-    | undefined {
+  render() {
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
         <Text>Setting page</Text>

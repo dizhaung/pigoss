@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {
   SafeAreaView,
+  Alert,
   Text,
   ScrollView,
   View,
@@ -131,6 +132,12 @@ export default class Monitor extends Component {
       this.start = 0;
       this.isContinue = true;
       this.path = data.groups[0].path;
+      // 主动触发 tab change 事件
+      this.handleTab({
+        from: -1,
+        i: 0,
+        ref: {}
+      })
     } catch (e) {
       console.log(e);
     }
@@ -138,7 +145,7 @@ export default class Monitor extends Component {
 
   //顶部tab栏切换
   handleTab = ({from, i, ref}) => {
-    if (!ref || from !== i) {
+    if (!ref || from === i) {
       return null;
     }
     if (tabIndex !== i) {
@@ -161,7 +168,7 @@ export default class Monitor extends Component {
         params: JSON.stringify(obj),
       });
       if (data) {
-        alert(obj.isAttned==='0'?'取消关注成功':'关注成功')
+        Alert.alert('提示', obj.isAttned==='0'?'取消关注成功':'关注成功')
         this.setState({
           list: this.state.list.map(i =>
               i.path === item.path
@@ -171,7 +178,7 @@ export default class Monitor extends Component {
         });
       }
     } catch (e) {
-      alert('操作失败');
+      Alert.alert('提示', '操作失败');
       console.log(e);
     }
   };
@@ -227,16 +234,7 @@ export default class Monitor extends Component {
     this.start = 0;
     this.getList('', this.state.value);
   };
-  render():
-    | React.ReactElement<any>
-    | string
-    | number
-    | {}
-    | React.ReactNodeArray
-    | React.ReactPortal
-    | boolean
-    | null
-    | undefined {
+  render() {
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
         <View style={styles.container}>
@@ -392,6 +390,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     marginLeft: 16,
     marginRight: 16,
+    paddingLeft: 12,
   },
   sideBar: {
     width: 84,

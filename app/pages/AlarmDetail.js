@@ -86,16 +86,7 @@ export default class AlarmDetail extends Component {
   // onWillFocus = async () => {
   //   console.log(this.props.navigation.params);
   // };
-  render():
-    | React.ReactElement<any>
-    | string
-    | number
-    | {}
-    | React.ReactNodeArray
-    | React.ReactPortal
-    | boolean
-    | null
-    | undefined {
+  render() {
     const {navigation} = this.props;
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>

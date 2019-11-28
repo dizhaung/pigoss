@@ -141,16 +141,7 @@ export default class Home extends Component {
   // 组件销毁取消定时器
   componentWillUnmount = () => this.destroyTimer();
 
-  render():
-    | React.ReactElement<any>
-    | string
-    | number
-    | {}
-    | React.ReactNodeArray
-    | React.ReactPortal
-    | boolean
-    | null
-    | undefined {
+  render() {
     return (
       <SafeAreaView style={styles.container}>
         <NavigationEvents

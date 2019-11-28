@@ -7,16 +7,7 @@ export default class AlarmChart extends Component {
     super(props);
   }
 
-  render():
-      | React.ReactElement<any>
-      | string
-      | number
-      | {}
-      | React.ReactNodeArray
-      | React.ReactPortal
-      | boolean
-      | null
-      | undefined {
+  render() {
     const colorScale = ['#ff1a1a', '#ff8000', '#e6b800', '#0099cc'];
     return (
         <View style={styles.container}>

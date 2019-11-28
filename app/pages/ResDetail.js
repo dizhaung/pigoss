@@ -45,16 +45,7 @@ export default class AlarmDetail extends Component {
       console.log(e);
     }
   };
-  render():
-    | React.ReactElement<any>
-    | string
-    | number
-    | {}
-    | React.ReactNodeArray
-    | React.ReactPortal
-    | boolean
-    | null
-    | undefined {
+  render() {
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
         <View style={styles.container}>
@@ -131,10 +122,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     minHeight: 80,
-    height: 'auto',
     borderBottomWidth: 1,
     borderColor: '#ccc',
-    // backgroundColor: 'pink',
   },
   icon: {
     width: 35,
@@ -142,16 +131,12 @@ const styles = StyleSheet.create({
   },
   text: {
     flex: 1,
-    justifyContent: 'space-evenly',
-    // alignItems: 'center',
-    width: '80%',
-    height: '100%',
+    justifyContent: 'space-around',
     paddingLeft: 10,
   },
   name: {
     fontWeight: 'bold',
     fontSize: 16,
-    // backgroundColor: 'yellow',
   },
   desc: {
     paddingRight: 10,

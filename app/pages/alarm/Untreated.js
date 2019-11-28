@@ -31,11 +31,7 @@ export default class Untreated extends Component {
       list: [],
     };
     this.start = 0;
-  }
-
-  // 初始化调用接口
-  async componentDidMount(): void {
-    this.getList();
+    this.keyword = '';
   }
 
   // 状态清空
@@ -48,8 +44,15 @@ export default class Untreated extends Component {
     this.start = 0;
   };
 
+  // 搜索关键词
+  search = async keyword => {
+    this.clearState();
+    this.keyword = keyword;
+    await this.getList();
+  };
+
   //获取未处理告警列表
-  getList = async keyword => {
+  getList = async () => {
     this.setState({
       refreshing: this.start === 0,
     });
@@ -57,7 +60,7 @@ export default class Untreated extends Component {
       const {events, totalCount} = await fetchRequest('events', 'GET', {
         start: this.start,
         isTreated: false,
-        keyword,
+        keyword: this.keyword,
       });
       this.setState({
         list: [...this.state.list, ...events],
@@ -71,12 +74,7 @@ export default class Untreated extends Component {
 
   //列表下拉刷新功能
   onRefresh = async () => {
-    this.setState({
-      total: null,
-      list: [],
-      refreshing: true,
-    });
-    this.start = 0;
+   this.clearState();
     await this.getList();
   };
 
@@ -87,6 +85,7 @@ export default class Untreated extends Component {
       await this.getList();
     }
   };
+
   // 尾部组件
   footer = () => {
     if (this.state.refreshing) {
@@ -109,16 +108,7 @@ export default class Untreated extends Component {
     }
   };
 
-  render():
-    | React.ReactElement<any>
-    | string
-    | number
-    | {}
-    | React.ReactNodeArray
-    | React.ReactPortal
-    | boolean
-    | null
-    | undefined {
+  render() {
     const {navigation} = this.props;
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
